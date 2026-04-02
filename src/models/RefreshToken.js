@@ -23,7 +23,7 @@ const refreshTokenSchema = new mongoose.Schema(
 );
 
 refreshTokenSchema.index({ userId: 1 });
-refreshTokenSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 }); // TTL auto-cleanup
+refreshTokenSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 
 const RefreshToken = mongoose.model('RefreshToken', refreshTokenSchema);
 export default RefreshToken;

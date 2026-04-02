@@ -46,7 +46,6 @@ const financialRecordSchema = new mongoose.Schema(
   }
 );
 
-// Compound indexes for common query patterns
 financialRecordSchema.index({ isDeleted: 1, type: 1, date: -1 });
 financialRecordSchema.index({ isDeleted: 1, category: 1 });
 financialRecordSchema.index({ userId: 1, isDeleted: 1 });

@@ -8,7 +8,6 @@ import RefreshToken from '../../models/RefreshToken.js';
 
 class AuthService {
   async register({ email, password, name }) {
-    // Check if email exists
     const existing = await User.findOne({ email });
     if (existing) {
       throw ApiError.conflict('Email already registered');
@@ -75,7 +74,6 @@ class AuthService {
       throw ApiError.unauthorized('User not found or inactive');
     }
 
-    // Delete old refresh token (rotation)
     await RefreshToken.deleteOne({ _id: tokenRecord._id });
 
     const accessToken = this.generateAccessToken(user);
@@ -101,7 +99,7 @@ class AuthService {
 
   async generateRefreshToken(userId) {
     const token = uuidv4();
-    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
     await RefreshToken.create({ token, userId, expiresAt });
 

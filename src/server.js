@@ -4,7 +4,6 @@ import { connectDatabase } from './config/database.js';
 import logger from './utils/logger.js';
 
 const startServer = async () => {
-  // Connect to MongoDB
   const dbConnected = await connectDatabase();
 
   if (!dbConnected) {
@@ -19,13 +18,11 @@ const startServer = async () => {
   });
 };
 
-// Handle unhandled rejections
 process.on('unhandledRejection', (err) => {
   logger.error('Unhandled Rejection:', err);
   process.exit(1);
 });
 
-// Handle uncaught exceptions
 process.on('uncaughtException', (err) => {
   logger.error('Uncaught Exception:', err);
   process.exit(1);

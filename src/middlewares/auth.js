@@ -14,7 +14,6 @@ const authenticate = async (req, res, next) => {
     const token = authHeader.split(' ')[1];
     const decoded = jwt.verify(token, env.jwt.accessSecret);
 
-    // Verify user still exists and is active
     const user = await User.findOne({ _id: decoded.userId, status: 'ACTIVE' })
       .select('email name role status');
 

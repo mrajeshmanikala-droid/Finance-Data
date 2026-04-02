@@ -5,7 +5,6 @@ import authorize from '../../middlewares/rbac.js';
 
 const router = Router();
 
-// All routes require authentication
 router.use(authenticate);
 
 /**

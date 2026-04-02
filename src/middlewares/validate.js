@@ -33,7 +33,6 @@ const validate = (schema) => {
         if (result.data.query) req.query = result.data.query;
         if (result.data.params) req.params = { ...req.params, ...result.data.params };
       } else {
-        // Simple body-only schema (no wrapper)
         const result = schema.safeParse(req.body);
         if (!result.success) {
           const errors = result.error?.errors ? result.error.errors.map((e) => ({

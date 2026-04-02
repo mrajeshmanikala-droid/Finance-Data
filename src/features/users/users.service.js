@@ -87,7 +87,6 @@ class UsersService {
 
     await user.save();
 
-    // Return without password
     return User.findById(userId);
   }
 }

@@ -2,7 +2,6 @@ import ApiError from '../utils/ApiError.js';
 import logger from '../utils/logger.js';
 
 const errorHandler = (err, req, res, next) => {
-  // Log the error
   if (err.isOperational) {
     logger.warn(`Operational error: ${err.message}`, {
       statusCode: err.statusCode,
@@ -18,7 +17,6 @@ const errorHandler = (err, req, res, next) => {
     });
   }
 
-  // Handle specific error types
   if (err.code === 'ER_DUP_ENTRY') {
     err = ApiError.conflict('A record with this value already exists');
   }
